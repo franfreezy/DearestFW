@@ -13,6 +13,11 @@
   color-scheme: dark;
 }
 
+body {
+  color: #fff; /* Ensure default text is visible on dark backgrounds */
+  background: #000; /* Optional: ensure background is dark */
+}
+
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;
@@ -123,6 +128,11 @@
   outline: none;
   font-weight: 600;
   placeholder-color: #999; /* Placeholder text color */
+}
+
+.input::placeholder {
+  color: #999;
+  opacity: 1;
 }
 
 .input-error {

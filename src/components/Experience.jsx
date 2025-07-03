@@ -53,19 +53,33 @@ const ExperienceCard = ({ experience }) => (
 
 const Experience = () => (
   <>
-    <motion.div variants={textVariant()}>
-      <p className={`${styles.sectionSubText} text-center`}>
+    <div style={{ textAlign: "center" }}>
+      <p
+        className={`${styles.sectionSubText} text-center`}
+        style={{ color: "#fff", zIndex: 9999 }}
+      >
         What I have done so far
       </p>
-      <h2 className={`${styles.sectionHeadText} text-center`}>Work Experience</h2>
-    </motion.div>
+      <h2
+        className={`${styles.sectionHeadText} text-center`}
+        style={{ color: "#fff",  zIndex: 9999, margin: "0 auto" }}
+      >
+        Work Experience
+      </h2>
+    </div>
 
     <div className="mt-20 flex flex-col">
-      <VerticalTimeline>
-        {experiences.map((experience, index) => (
-          <ExperienceCard key={`experience-${index}`} experience={experience} />
-        ))}
-      </VerticalTimeline>
+      {experiences.length === 0 ? (
+        <div className="text-center text-white" style={{ color: "#fff", background: "#000", zIndex: 9999 }}>
+          No experiences found.
+        </div>
+      ) : (
+        <VerticalTimeline>
+          {experiences.map((experience, index) => (
+            <ExperienceCard key={`experience-${index}`} experience={experience} />
+          ))}
+        </VerticalTimeline>
+      )}
     </div>
   </>
 );
