@@ -65,8 +65,8 @@ export const experiences = [
     iconBg: "#161329",
     date: "Apr 2025 - Current",
     points: [
-      "Acquired hands-on knowledge of AWS Cloud Foundation, delving into cloud infrastructure, services, and deployment.",
-      "also gaining a solid foundation in Machine Learning, covering topics like algorithms, data analysis, and model building.",
+      "Building diverse innovative solutions in the fields of AI, ML, and IoT.",
+      "Sustaining a strong focus on climate action and sustainability.",
     ],
   },
   {
@@ -76,10 +76,11 @@ export const experiences = [
     iconBg: "#161329",
     date: "Jan 2024 - Mar 2025",
     points: [
-      "Completed virtual internship, gaining a strong foundation in MATLAB, including data analysis and processing.",
-      "Acquired practical skills in image and signal processing, including segmentation, batch processing, and spectral analysis.",
-      "Developed expertise in machine learning models for clustering, classification, and regression, and customized deep learning techniques for image classification.",
-    ],
+      "Established a suitable implementation framework and work plan for the TT&C subsystem.",
+      "Designed and Implemented a data visualisation tool for the satellite data.",
+      "Lead, mentor, and manage a high-performing engineering students team, fostering a collaborative and results-driven work environment.",
+      "Co-designed and implemented the communication circuitry for a nano satellite and proofed firmware for the communication subsystem.",
+      "Resolved a preexisting backlog in the TT&C subsystem and ended up delivering a working model."],
   },
   {
     title: "CTO",
@@ -88,10 +89,9 @@ export const experiences = [
     iconBg: "#161329",
     date: "June 2023 - July 2023",
     points: [
-      "Engineered a comprehensive Mental Health Fitness Tracker ML model utilizing Python and scikit-learn.",
-      "Maximized the model's performance by refining model parameters and employing ensemble methods, yielding an outstanding accuracy percentage of 98.50%.",
-      "Leveraged 12 regression algorithms to attain precise outcomes in analyzing and predicting mental fitness levels across 150+ countries.",
-    ],
+      "Developed and implemented a comprehensive technology strategy to drive innovation and growth within the company.",
+      "Laid the foundation for a robust technology infrastructure, ensuring scalability and reliability.",
+      "Led the design and development of cutting-edge software solutions, leveraging emerging technologies to enhance product quality and user experience.",],
   },
   {
     title: "Engineering Intern",
@@ -100,10 +100,9 @@ export const experiences = [
     iconBg: "#161329",
     date: "June 2023 - July 2023",
     points: [
-      "Engineered a comprehensive Mental Health Fitness Tracker ML model utilizing Python and scikit-learn.",
-      "Maximized the model's performance by refining model parameters and employing ensemble methods, yielding an outstanding accuracy percentage of 98.50%.",
-      "Leveraged 12 regression algorithms to attain precise outcomes in analyzing and predicting mental fitness levels across 150+ countries.",
-    ],
+     "Achieved realtime mitigation of electrical and mechanical faults in booster stations owned by Safaricom in Kiambu County.",
+     "Ensured seamless transmission of telemetry data to the Egypro command center.",
+     "Determined the most effective solutions to address the needs of various booster sites."],
   },
   
   {
@@ -111,12 +110,11 @@ export const experiences = [
     company_name: "Gearbox EA Limited| Untapped Global | Fedha Electrics",
     icon: gearbox,
     iconBg: "#161329",
-    date: "Jan2022 - May 2022",
+    date: "Jan 2022 - May 2022",
     points: [
-      "Engineered a comprehensive Mental Health Fitness Tracker ML model utilizing Python and scikit-learn.",
-      "Maximized the model's performance by refining model parameters and employing ensemble methods, yielding an outstanding accuracy percentage of 98.50%.",
-      "Leveraged 12 regression algorithms to attain precise outcomes in analyzing and predicting mental fitness levels across 150+ countries.",
-    ],
+      "Co-developed smart solutions addressing human challenges, including a smart water hub and speed limiter.",
+      "Developed data dashboards for IoT sensors.",
+      "Co-developed firmware for hardware designed by other engineers."],
   },
   {
     title: "Census Enumerator",
@@ -125,10 +123,9 @@ export const experiences = [
     iconBg: "#161329",
     date: "July 2019 - Aug 2019",
     points: [
-      "Engineered a comprehensive Mental Health Fitness Tracker ML model utilizing Python and scikit-learn.",
-      "Maximized the model's performance by refining model parameters and employing ensemble methods, yielding an outstanding accuracy percentage of 98.50%.",
-      "Leveraged 12 regression algorithms to attain precise outcomes in analyzing and predicting mental fitness levels across 150+ countries.",
-    ],
+      "collected and recorded data on the population of Kenya during the 2019 National Population and Housing Census.",
+      "Ensured accuracy and completeness of data collected.",
+      "Provided support to other Census enumerators."],
   },
 ];
 

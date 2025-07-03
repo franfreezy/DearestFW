@@ -18,10 +18,10 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915EFF]">W. Frandel</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I prioritise:
+            I am passionate about:
             <Typewriter
               options={{
-                strings: ["AI & ML", "Data Science", "Hardware Design", "Climate advocacy"],
+                strings: ["AI & ML", "Data Science", "Hardware Design", "Climate advocacy","Space Science"],
                 autoStart: true,
                 loop: true,
                 loopCount: Infinity,

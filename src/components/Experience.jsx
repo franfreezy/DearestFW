@@ -58,7 +58,7 @@ const Experience = () => (
         className={`${styles.sectionSubText} text-center`}
         style={{ color: "#fff", zIndex: 9999 }}
       >
-        What I have done so far
+        Where I've Worked so far
       </p>
       <h2
         className={`${styles.sectionHeadText} text-center`}
