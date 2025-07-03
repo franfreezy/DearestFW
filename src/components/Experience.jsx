@@ -52,7 +52,7 @@ const ExperienceCard = ({ experience }) => (
 );
 
 const Experience = () => (
-  <>
+  <section id="work">
     <div style={{ textAlign: "center" }}>
       <p
         className={`${styles.sectionSubText} text-center`}
@@ -81,7 +81,7 @@ const Experience = () => (
         </VerticalTimeline>
       )}
     </div>
-  </>
+  </section>
 );
 
 export default SectionWrapper(Experience, "work");

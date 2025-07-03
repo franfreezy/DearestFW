@@ -1,5 +1,4 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import { About, Contact, Experience, Hero, Navbar, StarsCanvas, Tech, Works } from './components';
 import Competency from './components/competencies';
 
@@ -23,14 +22,10 @@ const MainView = () => (
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<MainView />} />
-        <Route path="/admin" element={<MainView />} />
-      </Routes>
-    </>
+    <MainView />
   );
 };
+
 
 
 export default App;
