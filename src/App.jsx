@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { About, Contact, Experience, Hero, Navbar, StarsCanvas, Tech, Works } from './components';
 import Competency from './components/competencies';
 
@@ -23,18 +23,14 @@ const MainView = () => (
 
 const App = () => {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <>
       <Routes>
         <Route path="/" element={<MainView />} />
         <Route path="/admin" element={<MainView />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
+
 
 export default App;
