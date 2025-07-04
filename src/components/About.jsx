@@ -7,7 +7,7 @@ import { styles } from '../styles';
 import { fadeIn, textVariant } from '../utils/motion';
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className="xs:w-[250px] w-full">
+  <Tilt className="w-full sm:w-[250px] md:w-[300px]">
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.5, 0.75)}
       className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
@@ -18,10 +18,15 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
+        className="bg-tertiary rounded-[20px] py-8 px-6 min-h-[280px] flex flex-col justify-evenly items-center"
       >
-        <img src={icon} alt="web-development" className="w-16 h-16 object-contain" loading="lazy" />
-        <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
+        <img
+          src={icon}
+          alt={title}
+          className="w-16 h-16 object-contain mb-4"
+          loading="lazy"
+        />
+        <h3 className="text-white text-lg md:text-xl font-bold text-center">{title}</h3>
       </div>
     </motion.div>
   </Tilt>
@@ -37,7 +42,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn('', '', 0.1, 1)}
-        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        className="mt-4 text-secondary text-base sm:text-[17px] max-w-3xl leading-7 sm:leading-[30px]"
       >
         I am an Electronic and Computer Engineering Graduate from The Jomo Kenyatta University of Agriculture and Technology and a multilingual speaker with strong passion
         for machine learning, artificial intelligence, climate action, space science, data science and embedded systems. I am interested in exploring the intersection of
@@ -47,7 +52,8 @@ const About = () => {
         passion for Engineering.
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10">
+      {/* Responsive Card Container */}
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

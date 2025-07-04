@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
@@ -7,14 +7,20 @@ import { SectionWrapper } from "../hoc";
 import { projects, issuingorg, orgImages, certificationsByOrg, certifications } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return isMobile;
+};
+
 const OrganisationCard = ({ org, onClick }) => (
   <motion.div variants={fadeIn("up", "spring")}>
     <Tilt
-      options={{
-        max: 45,
-        scale: 1,
-        speed: 450,
-      }}
+      options={{ max: 45, scale: 1, speed: 450 }}
       className="bg-tertiary p-5 rounded-2xl sm:w-[260px] w-full relative"
     >
       <div className="flex flex-col items-center">
@@ -34,6 +40,16 @@ const OrganisationCard = ({ org, onClick }) => (
         +
       </button>
     </Tilt>
+  </motion.div>
+);
+
+const OrganisationListItem = ({ org, onClick }) => (
+  <motion.div
+    variants={fadeIn("up", "spring")}
+    className="bg-tertiary px-4 py-3 rounded-lg w-full cursor-pointer hover:bg-secondary transition"
+    onClick={onClick}
+  >
+    <h3 className="text-white text-lg font-semibold">{org}</h3>
   </motion.div>
 );
 
@@ -108,22 +124,30 @@ const CertificationImageModal = ({ cert, onClose }) => (
 const Competency = () => {
   const [selectedOrg, setSelectedOrg] = useState(null);
   const [selectedCert, setSelectedCert] = useState(null);
+  const isMobile = useIsMobile();
 
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My Competencies</p>
+        <p className={`${styles.sectionSubText}`}>My Competencies</p>
         <h2 className={`${styles.sectionHeadText}`}>Certifications</h2>
       </motion.div>
       <div className="w-full flex">
-        <motion.p variants={fadeIn("", "", 0.1)} className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-          Following certifications solidify my skills and my commitment to quality delivery. 
+        <motion.p
+          variants={fadeIn("", "", 0.1)}
+          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
+          Following certifications solidify my skills and my commitment to quality delivery.
         </motion.p>
       </div>
       <div className="mt-20 flex flex-wrap gap-7">
-        {issuingorg.map((org) => (
-          <OrganisationCard key={org} org={org} onClick={() => setSelectedOrg(org)} />
-        ))}
+        {issuingorg.map((org) =>
+          isMobile ? (
+            <OrganisationListItem key={org} org={org} onClick={() => setSelectedOrg(org)} />
+          ) : (
+            <OrganisationCard key={org} org={org} onClick={() => setSelectedOrg(org)} />
+          )
+        )}
       </div>
       {selectedOrg && !selectedCert && (
         <CertificationList
@@ -143,4 +167,3 @@ const Competency = () => {
 };
 
 export default SectionWrapper(Competency, "");
-
