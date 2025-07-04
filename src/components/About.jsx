@@ -21,7 +21,6 @@ const ServiceCard = ({ index, title, icon }) => (
         className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
       >
         <img src={icon} alt="web-development" className="w-16 h-16 object-contain" loading="lazy" />
-
         <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
       </div>
     </motion.div>
@@ -40,7 +39,7 @@ const About = () => {
         variants={fadeIn('', '', 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I am an Electronic and Computer Engineering Graduate from The Jomo Kenyatta University of Agriculture and Technology and multilingual speaker with strong passion
+        I am an Electronic and Computer Engineering Graduate from The Jomo Kenyatta University of Agriculture and Technology and a multilingual speaker with strong passion
         for machine learning, artificial intelligence, climate action, space science, data science and embedded systems. I am interested in exploring the intersection of
         technology and sustainability, particularly in how emerging technologies can be harnessed to address climate change and promote environmental conservation.
         I am eager to join an organisation that values innovation, collaboration, fairness and quality delivery and I am 

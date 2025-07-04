@@ -1,56 +1,114 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
-import { projects } from "../constants";
+import { projects, issuingorg, orgImages, certificationsByOrg, certifications } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const CompetencyCard = ({ name, description, tags, image, source_code_link }) => {
-  return (
-    <motion.div variants={fadeIn("up", "spring")}>
-      <Tilt
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+const OrganisationCard = ({ org, onClick }) => (
+  <motion.div variants={fadeIn("up", "spring")}>
+    <Tilt
+      options={{
+        max: 45,
+        scale: 1,
+        speed: 450,
+      }}
+      className="bg-tertiary p-5 rounded-2xl sm:w-[260px] w-full relative"
+    >
+      <div className="flex flex-col items-center">
+        <img
+          src={orgImages[org] || "https://via.placeholder.com/100"}
+          alt={org}
+          className="w-24 h-24 object-contain rounded-full mb-4"
+        />
+        <h3 className="text-white font-bold text-[20px] text-center">{org}</h3>
+      </div>
+      <button
+        className="absolute top-4 right-4 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-xl shadow-lg hover:bg-secondary transition"
+        onClick={onClick}
+        aria-label={`Show certifications for ${org}`}
+        type="button"
       >
-        <div className="relative w-full h-[230px]">
-          <img
-            src={image}
-            alt="project_image"
-            className="w-full h-full object-cover rounded-2xl"
-          />
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img src={github} alt="source code" className="w-1/2 h-1/2 object-contain" />
-            </div>
-          </div>
-        </div>
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <p key={tag.name} className={`text-[14px] ${tag.color}`}>
-              #{tag.name}
-            </p>
-          ))}
-        </div>
-      </Tilt>
-    </motion.div>
+        +
+      </button>
+    </Tilt>
+  </motion.div>
+);
+
+const CertificationList = ({ org, onClose, onCertClick }) => {
+  const certNames = certificationsByOrg[org] || [];
+  const certs = certifications.filter((cert) => certNames.includes(cert.name));
+  return (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-tertiary p-8 rounded-2xl max-w-lg w-full relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute top-2 right-4 text-white text-xl"
+          onClick={onClose}
+        >
+          &times;
+        </button>
+        <h2 className="text-white font-bold text-[22px] mb-4 text-center">
+          Certifications from {org}
+        </h2>
+        {certs.length === 0 ? (
+          <p className="text-secondary text-center">No certifications listed for this organisation.</p>
+        ) : (
+          <ul className="max-h-72 overflow-y-auto pr-2">
+            {certs.map((cert, idx) => (
+              <li
+                key={idx}
+                className="mb-4 cursor-pointer"
+                onClick={() => onCertClick(cert)}
+              >
+                <div className="font-semibold text-white">{cert.name}</div>
+                <div className="text-secondary text-[14px]">{cert.description}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
   );
 };
 
+const CertificationImageModal = ({ cert, onClose }) => (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+    onClick={onClose}
+  >
+    <div
+      className="relative bg-tertiary p-4 rounded-2xl flex flex-col items-center"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="absolute top-2 right-4 text-white text-xl"
+        onClick={onClose}
+      >
+        &times;
+      </button>
+      <img
+        src={cert.image}
+        alt={cert.name}
+        className="max-w-xs max-h-[60vh] rounded-lg mb-4"
+      />
+      <div className="text-white font-bold text-lg mb-2">{cert.name}</div>
+      <div className="text-secondary text-[14px] text-center">{cert.description}</div>
+    </div>
+  </div>
+);
+
 const Competency = () => {
+  const [selectedOrg, setSelectedOrg] = useState(null);
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -63,12 +121,26 @@ const Competency = () => {
         </motion.p>
       </div>
       <div className="mt-20 flex flex-wrap gap-7">
-        {projects.map((project, index) => (
-          <CompetencyCard key={`project-${index}`} {...project} />
+        {issuingorg.map((org) => (
+          <OrganisationCard key={org} org={org} onClick={() => setSelectedOrg(org)} />
         ))}
       </div>
+      {selectedOrg && !selectedCert && (
+        <CertificationList
+          org={selectedOrg}
+          onClose={() => setSelectedOrg(null)}
+          onCertClick={setSelectedCert}
+        />
+      )}
+      {selectedCert && (
+        <CertificationImageModal
+          cert={selectedCert}
+          onClose={() => setSelectedCert(null)}
+        />
+      )}
     </>
   );
 };
 
 export default SectionWrapper(Competency, "");
+
