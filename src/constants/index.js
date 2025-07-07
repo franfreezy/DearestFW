@@ -136,7 +136,7 @@ export const experiences = [
     company_name: "Netgenix Tech Icons",
     icon: netgenix,
     iconBg: "#161329",
-    date: "June 2023 - July 2023",
+    date: "Aug 2023 - July 2024",
     points: [
       "Developed and implemented a comprehensive technology strategy to drive innovation and growth within the company.",
       "Laid the foundation for a robust technology infrastructure, ensuring scalability and reliability.",
