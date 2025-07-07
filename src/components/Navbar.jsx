@@ -19,33 +19,40 @@ const Navbar = () => {
     }
   }, [toggle]);
 
-  const renderNavLinks = (isSecondary) => (
-    <ul className={`list-none ${isSecondary ? 'flex sm:hidden' : 'hidden sm:flex'} flex-row gap-6`}>
-      {navLinks.map((link) => (
-        <li
-          key={link.id}
-          className={`${
-            active === link.title ? 'text-white' : isSecondary ? 'text-secondary' : 'text-white'
-          } hover:text-white text-[20px] font-medium cursor-pointer`}
-          onClick={() => {
-            setActive(link.title);
-            if (isSecondary) {
-              setToggle(false);
-            }
-          }}
-        >
-          <a href={`#${link.id}`}>{link.title}</a>
-        </li>
-      ))}
+ const renderNavLinks = (isSecondary) => (
+  <ul
+    className={`list-none ${
+      isSecondary
+        ? 'flex sm:hidden flex-col items-start gap-4' 
+        : 'hidden sm:flex flex-row gap-6'            
+    }`}
+  >
+    {navLinks.map((link) => (
       <li
-        className={`text-${
-          isSecondary ? 'secondary' : 'white'
+        key={link.id}
+        className={`${
+          active === link.title ? 'text-white' : isSecondary ? 'text-secondary' : 'text-white'
         } hover:text-white text-[20px] font-medium cursor-pointer`}
+        onClick={() => {
+          setActive(link.title);
+          if (isSecondary) {
+            setToggle(false);
+          }
+        }}
       >
-        <button onClick={toggleResume}>Resume</button>
+        <a href={`#${link.id}`}>{link.title}</a>
       </li>
-    </ul>
-  );
+    ))}
+    <li
+      className={`text-${
+        isSecondary ? 'secondary' : 'white'
+      } hover:text-white text-[20px] font-medium cursor-pointer`}
+    >
+      <button onClick={toggleResume}>Resume</button>
+    </li>
+  </ul>
+);
+
 
   return (
     <>
