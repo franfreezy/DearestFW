@@ -48,6 +48,7 @@ const Contact = () => {
     setIsModalOpen(false);
     setCoffees(1);
     setPhone("");
+  window.location.href = "https://paystack.shop/pay/frandelwanjawa"; 
   };
 
   return (
