@@ -5,6 +5,9 @@ import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 import { styles } from "../styles";
 
+// Cloudflare Worker Proxy URL
+const API_BASE_URL = import.meta.env.VITE_API_STK_URL;
+
 const contactInfo = {
   email: "frandelwanjawa19@gmail.com",
   phone: "+254729634366",
@@ -36,23 +39,65 @@ const Contact = () => {
   const [coffees, setCoffees] = useState(1);
   const [phone, setPhone] = useState("");
   const [currency, setCurrency] = useState("KES");
+  const [loading, setLoading] = useState(false);
 
-  const coffeePrice = currency === "KES" ? 130 : 1;
+  const COFFEE_PRICE_KES = 150;
+  const USD_TO_KES_RATE = 150;
+
+  const coffeePrice = currency === "KES" ? COFFEE_PRICE_KES : 1;
   const total = coffees * coffeePrice;
 
-  const handleSubmit = (e) => {
+  const convertToKes = (amount) => {
+    if (currency === "KES") return amount;
+    return amount * USD_TO_KES_RATE;
+  };
+
+  // ---- STK PUSH HANDLER (Cloudflare Worker) ----
+  const sendStkPush = async (amountKes) => {
+    setLoading(true);
+
+    try {
+      const response = await fetch(API_BASE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phone,
+          amount: amountKes,
+        }),
+      });
+
+      const data = await response.json();
+      console.log("STK response:", data);
+
+      if (response.ok) {
+        alert("STK Push sent! Please check your phone.");
+      } else {
+        alert(data.message || "STK push failed.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network error while sending STK push.");
+    }
+
+    setLoading(false);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle submission logic here (e.g., payment gateway)
-    console.log(`Buying ${coffees} coffee(s) for ${total} ${currency}, phone: ${phone}`);
-    alert(`Thank you for your support! We'll contact ${phone} shortly.`);
+
+    const amountKes = convertToKes(total);
+    await sendStkPush(amountKes);
+
     setIsModalOpen(false);
     setCoffees(1);
     setPhone("");
-  window.location.href = "https://paystack.shop/pay/frandelwanjawa"; 
   };
 
   return (
     <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden relative">
+
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
@@ -86,9 +131,11 @@ const Contact = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-white text-black p-6 rounded-lg w-full max-w-md relative">
+          <div className="bg-white text-black p-6 rounded-lg w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">Support Me ☕</h2>
+
             <form onSubmit={handleSubmit} className="space-y-4">
+
               <div>
                 <label className="block mb-1 font-medium">Number of Coffees</label>
                 <input
@@ -99,6 +146,7 @@ const Contact = () => {
                   className="w-full px-4 py-2 border rounded-md"
                 />
               </div>
+
               <div>
                 <label className="block mb-1 font-medium">Your Phone Number</label>
                 <input
@@ -109,6 +157,7 @@ const Contact = () => {
                   className="w-full px-4 py-2 border rounded-md"
                 />
               </div>
+
               <div>
                 <label className="block mb-1 font-medium">Currency</label>
                 <select
@@ -123,6 +172,11 @@ const Contact = () => {
 
               <div className="font-semibold">
                 Total: {total} {currency}
+                {currency === "USD" && (
+                  <div className="text-sm text-gray-600">
+                    (~{convertToKes(total)} KES will be charged)
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-between mt-6">
@@ -133,17 +187,22 @@ const Contact = () => {
                 >
                   Cancel
                 </button>
+
                 <button
                   type="submit"
-                  className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded font-bold"
+                  disabled={loading}
+                  className={`px-6 py-2 rounded font-bold text-black bg-yellow-500 hover:bg-yellow-400 
+                    ${loading && "opacity-50 cursor-not-allowed"}`}
                 >
-                  Pay
+                  {loading ? "Processing..." : "Pay"}
                 </button>
+
               </div>
             </form>
           </div>
         </div>
       )}
+
     </div>
   );
 };
