@@ -71,6 +71,7 @@ import {
   linkedin,
   ksa,
   tethics,
+  kenya,
   github as githubLogo,
 } from "../assets";
 
@@ -86,6 +87,11 @@ export const navLinks = [
   {
     id: "contact",
     title: "Contact",
+  },
+  
+  {
+    id: "donate",
+    title: "Donate",
   },
 ];
 
@@ -107,6 +113,16 @@ export const technologies = [
 ];
 
 export const experiences = [
+  {
+    title: "AI & SWE",
+    company_name: "OPoRK",
+    icon: kenya,
+    iconBg: "#fff",
+    date: "Dec 2025 - Current",
+    points: [
+      "Building AI and software solutions for GoK.",
+      ],
+  },
   {
     title: "Co-Founder",
     company_name: "Tethics Electrics Group",

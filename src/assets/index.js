@@ -32,6 +32,7 @@ import threejs from "./tech/threejs.png";
 
 // Import common assets
 import logo from "./logo.jpg";
+import kenya from "./kenya.jpeg";
 import microsoft from "./microsoft.jpeg";
 import ibm from "./ibm.png";
 import cisco from "./cisco.jpeg";
@@ -96,6 +97,7 @@ import cert39 from "./certs/sustainability.png";
 
 
 export {
+  kenya,
   altium,
   hackerrank, 
   kaggle,

@@ -7,7 +7,7 @@ import { styles } from '../styles';
 import { fadeIn, textVariant } from '../utils/motion';
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className="w-full sm:w-[250px] md:w-[300px]">
+  <Tilt className="w-full sm:w-[200px] md:w-[250px]">
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.5, 0.75)}
       className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
@@ -18,7 +18,7 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary rounded-[20px] py-8 px-6 min-h-[280px] flex flex-col justify-evenly items-center"
+        className="bg-tertiary rounded-[20px] py-8 px-6 min-h-[200px] flex flex-col justify-evenly items-center"
       >
         <img
           src={icon}
@@ -53,7 +53,7 @@ const About = () => {
       </motion.p>
 
       {/* Responsive Card Container */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

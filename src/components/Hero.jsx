@@ -9,7 +9,7 @@ const Hero = () => {
     <section className="relative w-full h-screen mx-auto">
       {/* TEXT AND INDICATOR SECTION */}
       <div
-        className={`absolute inset-0 top-[100px] sm:top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-col sm:flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[100px] sm:top-[220px] max-w-7xl mx-auto ${styles.paddingX} flex flex-col sm:flex-row items-start gap-5`}
       >
         {/* Vertical Indicator */}
         <div className="flex flex-col justify-center items-center mt-5">
@@ -46,11 +46,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 3D Canvas - Hidden on small screens */}
-      <div className="hidden sm:block">
-        <ComputersCanvas />
-      </div>
-
+      
       {/* Scroll Down Indicator */}
       <div className="absolute xs:bottom-10 bottom-20 w-full flex justify-center items-center">
         <a href="#about">
