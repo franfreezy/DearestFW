@@ -72,6 +72,7 @@ import {
   ksa,
   tethics,
   kenya,
+  ca,
   github as githubLogo,
 } from "../assets";
 
@@ -114,13 +115,32 @@ export const technologies = [
 
 export const experiences = [
   {
+    title: "Compliance & Licensing Engineer",
+    company_name: "Communication Authority of Kenya",
+    icon: ca,
+    iconBg: "#fff",
+    date: "Jan 2026 - Current",
+    points: [
+      "Design and develop internal software tools to automate compliance and licensing workflows within the Telecommunications Regulatory framework. ",
+      " Digitize and optimize regulatory processes, reducing manual handling, processing delays, and operational bottlenecks. ",
+      " Build workflow automation systems and tracking dashboards to improve visibility of application status, compliance reviews, and approvals. ",
+      "Collaborate with compliance officers and licensing teams to translate regulatory procedures into scalable digital solutions. ",
+      " Implement data validation and process control mechanisms to improve accuracy and consistency in license and compliance assessments.",
+      "Support integration of digital systems with existing regulatory databases and platforms."
+       ],
+  },
+  {
     title: "AI & SWE",
-    company_name: "OPoRK",
+    company_name: "ICT Authority",
     icon: kenya,
     iconBg: "#fff",
     date: "Dec 2025 - Current",
     points: [
-      "Building AI and software solutions for GoK.",
+      "Design and develop AI-driven and software solutions to improve efficiency, transparency, and accessibility of public service delivery." ,
+      "Lead digital innovation initiatives by identifying manual government workflows and transforming them into intelligent automated systems.",
+      "Build and deploy data-driven tools that support evidence-based decision-making across public sector departments.",
+      "Collaborate with cross-functional government teams to translate policy and operational needs into scalable technical solutions. ",
+      "Optimize service delivery processes through automation, analytics, and machine learning models that reduce turnaround times and operational costs. "
       ],
   },
   {
